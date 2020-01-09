@@ -198,14 +198,11 @@
         
         curl_close($ch);
         
-        $extracted_content = $output->content;
+        $article["content"] = '< img src="' . $output->lead_image_url . '"/>';
+        $output->content && ( $article["content"] .=  $output->content );
         
-        if ($extracted_content)
-        {
-            $article["content"] = $extracted_content;
-        }
-
         return $article;
+        
     }
 
     function hook_article_filter($article)
